@@ -224,6 +224,21 @@
         <filterScope>Everything</filterScope>
         <label>All Orders</label>
     </listViews>
+    <listViews>
+        <fullName>OrderView</fullName>
+        <columns>ORDERS.ORDER_NUMBER</columns>
+        <columns>Customer__c</columns>
+        <columns>Store__c</columns>
+        <columns>ORDER.SHIPPING_STREET</columns>
+        <columns>ORDER.SHIPPING_CITY</columns>
+        <columns>ORDER.SHIPPING_STATE</columns>
+        <columns>ORDER.SHIPPING_ZIP</columns>
+        <columns>ORDER.SHIPPING_COUNTRY</columns>
+        <columns>ORDERS.END_DATE</columns>
+        <columns>ORDERS.EFFECTIVE_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>OrderView</label>
+    </listViews>
     <searchLayouts>
         <customTabListAdditionalFields>ORDERS.ORDER_NUMBER</customTabListAdditionalFields>
         <customTabListAdditionalFields>SALES.ACCOUNT.NAME</customTabListAdditionalFields>

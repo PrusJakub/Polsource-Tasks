@@ -22,5 +22,21 @@
     	<members>Order</members>
     	<name>CustomObject</name>
     </types>
+    <types>
+    	<members>Account.PublisherView</members>
+    	<members>Account.CustomerView</members>
+    	<members>Account.StoreView</members>
+    	<members>Order.OrderView</members>
+    	<members>Book.BookView</members>
+    	<name>ListView</name>
+    </types>
+    <types>
+    	<members>Account-Customer</members>
+    	<members>Account-Store</members>
+    	<members>Account-Publisher</members>
+    	<members>Book-Book Layout</members>
+    	<members>Order-Order Layout</members>
+    	<name>Layout</name>
+    </types>
     <version>38.0</version>
 </Package>
