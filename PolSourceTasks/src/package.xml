@@ -22,6 +22,7 @@
 		<members>Order</members>
 		<members>OrderItem</members>
 		<members>SalesBeginning__c</members>
+		<members>Edition__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
