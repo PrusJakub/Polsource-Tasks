@@ -5,7 +5,7 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>BooksEditionsNumberHandler</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
@@ -13,7 +13,7 @@
 		<name>StaticResource</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>BooksEditionsNumberTrigger</members>
 		<name>ApexTrigger</name>
 	</types>
 	<types>
@@ -36,7 +36,7 @@
 	<types>
 		<members>Account-Customer</members>
 		<members>Account-Store</members>
-		<members>Account-Publisher</members>
+		<members>Account-Publisher Layout</members>
 		<members>Book__c-Book Layout</members>
 		<members>Order-Order Layout</members>
 		<members>OrderItem-Order Product Layout</members>
