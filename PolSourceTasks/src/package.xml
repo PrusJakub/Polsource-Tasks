@@ -5,7 +5,9 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
-		<members>BooksEditionsNumberHandler</members>
+		<members>EditionTriggerHandler</members>
+		<members>EditionTriggerTest</members>
+		<members>TestDataFactory</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
@@ -13,7 +15,7 @@
 		<name>StaticResource</name>
 	</types>
 	<types>
-		<members>BooksEditionsNumberTrigger</members>
+		<members>EditionTrigger</members>
 		<name>ApexTrigger</name>
 	</types>
 	<types>
@@ -21,6 +23,7 @@
 		<members>Book__c</members>
 		<members>Order</members>
 		<members>OrderItem</members>
+		<members>LimitOfEditions__c</members>
 		<members>SalesBeginning__c</members>
 		<members>Edition__c</members>
 		<name>CustomObject</name>
