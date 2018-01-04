@@ -1,14 +1,6 @@
 public with sharing class EditionTriggerHandler {
-    
-    private static void updateBooks(Set<Id> bookIds) {
-        List<Book__c> books = [SELECT Id, Available_editions__c, (SELECT Id, Active__c FROM Editions__r WHERE Active__c = true) bookEditions FROM Book__c WHERE Id IN :bookIds];
-        for(Book__c b : books){
-			b.Available_editions__c = b.Editions__r.size();   
-        }
-        update books;
-    }
-    
-    public void onAfterUpdate(Map<Id, Edition__c> newMap, Map<Id, Edition__c> oldMap){
+   
+   public void onAfterUpdate(Map<Id, Edition__c> newMap, Map<Id, Edition__c> oldMap){
         Set<Id> bookIds = new Set<Id>();
         for(Edition__c e : newMap.values()){             
             if(e.Active__c != oldMap.get(e.Id).Active__c){
@@ -36,5 +28,13 @@ public with sharing class EditionTriggerHandler {
             }             
         }        
         updateBooks(bookIds);
+    }
+    
+    private static void updateBooks(Set<Id> bookIds) {
+        List<Book__c> books = [SELECT Id, Available_editions__c, (SELECT Id, Active__c FROM Editions__r WHERE Active__c = true) bookEditions FROM Book__c WHERE Id IN :bookIds];
+        for(Book__c b : books){
+			b.Available_editions__c = b.Editions__r.size();   
+        }
+        update books;
     }
 }

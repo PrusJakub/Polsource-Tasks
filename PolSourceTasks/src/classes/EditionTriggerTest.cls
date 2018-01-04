@@ -1,11 +1,12 @@
 @isTest
 private class EditionTriggerTest {
     
+    private Boolean shouldInsert = true;
+    
     @isTest
     static void editionInsertNoActiveTest(){
         //given
-        Book__c book = new Book__c();
-		book = TestDataFactory.prepareBook();        
+        Book__c book = TestDataFactory.prepareBook(true);        
     	List<Edition__c> editions = new List<Edition__c>();
     	//when
     	for(Integer i = 0; i<3; i++){
@@ -21,8 +22,7 @@ private class EditionTriggerTest {
     @isTest
     static void editionInsertWithActiveTest(){
         //given
-       	Book__c book = new Book__c();
-		book = TestDataFactory.prepareBook();        
+       	Book__c book = TestDataFactory.prepareBook(true);       
     	List<Edition__c> editions = new List<Edition__c>();
     	
         //when
@@ -39,8 +39,7 @@ private class EditionTriggerTest {
     @isTest
     static void editionUpdateAddActiveTest(){
         //given
-        Book__c book = new Book__c();
-		book = TestDataFactory.prepareBook();  
+        Book__c book = TestDataFactory.prepareBook(true);  
     	List<Edition__c> editions = new List<Edition__c>();
     	for(Integer i = 0; i<3; i++){
     		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = false));    		
@@ -61,8 +60,7 @@ private class EditionTriggerTest {
     @isTest
     static void editionUpdateRemoveActiveTest(){
         //given
-        Book__c book = new Book__c();
-		book = TestDataFactory.prepareBook();  
+        Book__c book = TestDataFactory.prepareBook(true);  
     	List<Edition__c> editions = new List<Edition__c>();
     	for(Integer i = 0; i<3; i++){
     		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = true));    		
@@ -83,8 +81,7 @@ private class EditionTriggerTest {
     @isTest
     static void editionDeleteTest(){
         //given
-        Book__c book = new Book__c();
-		book = TestDataFactory.prepareBook();
+        Book__c book = TestDataFactory.prepareBook(true);
     	List<Edition__c> editions = new List<Edition__c>();
     	for(Integer i = 0; i<3; i++){
     		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = true));    		
