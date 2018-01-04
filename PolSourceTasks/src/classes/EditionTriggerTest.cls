@@ -12,8 +12,7 @@ private class EditionTriggerTest {
     		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = false));    		
     	}
     	insert editions;       
-        update book;
-        
+
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
         System.assertEquals(0, book.Available_editions__c);
@@ -50,13 +49,13 @@ private class EditionTriggerTest {
         
         //when
         for(Integer i = 0; i<3; i++){
-        	editions.get(i).Active__c = true;
+        	editions.get(0).Active__c = true;
         }
         update editions;
         
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
-        System.assertEquals(3, book.Available_editions__c);       
+        System.assertEquals(1, book.Available_editions__c);       
     }
     
     @isTest
@@ -72,13 +71,13 @@ private class EditionTriggerTest {
         
         //when
         for(Integer i = 0; i<3; i++){
-        	editions.get(i).Active__c = false;
+        	editions.get(0).Active__c = false;
         }
         update editions;
         
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
-        System.assertEquals(0, book.Available_editions__c);   
+        System.assertEquals(2, book.Available_editions__c);   
     }
     
     @isTest

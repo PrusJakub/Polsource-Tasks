@@ -23,7 +23,7 @@
 		<members>Book__c</members>
 		<members>Order</members>
 		<members>OrderItem</members>
-		<members>LimitOfEditions__c</members>
+		<members>TriggerSettings__c</members>
 		<members>SalesBeginning__c</members>
 		<members>Edition__c</members>
 		<name>CustomObject</name>
@@ -48,6 +48,10 @@
 	<types>
 		<members>Warehouse employee</members>
 		<name>Profile</name>
+	</types>
+	<types>
+		<members>Warehouse</members>
+		<name>CustomApplication</name>
 	</types>
 	<version>38.0</version>
 </Package>
