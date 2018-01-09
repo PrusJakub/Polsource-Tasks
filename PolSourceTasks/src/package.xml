@@ -5,7 +5,10 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
-		<members>BooksEditionsNumberHandler</members>
+		<members>EditionTriggerHandler</members>
+		<members>EditionTriggerTest</members>
+		<members>TestDataFactory</members>
+		<members>TestUtils</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
@@ -13,7 +16,7 @@
 		<name>StaticResource</name>
 	</types>
 	<types>
-		<members>BooksEditionsNumberTrigger</members>
+		<members>EditionTrigger</members>
 		<name>ApexTrigger</name>
 	</types>
 	<types>
@@ -21,17 +24,10 @@
 		<members>Book__c</members>
 		<members>Order</members>
 		<members>OrderItem</members>
+		<members>TriggerSettings__c</members>
 		<members>SalesBeginning__c</members>
 		<members>Edition__c</members>
 		<name>CustomObject</name>
-	</types>
-	<types>
-		<members>Account.PublisherView</members>
-		<members>Account.CustomerView</members>
-		<members>Account.StoreView</members>
-		<members>Order.OrderView</members>
-		<members>Book__c.BookView</members>
-		<name>ListView</name>
 	</types>
 	<types>
 		<members>Account-Customer</members>
@@ -45,6 +41,10 @@
 	<types>
 		<members>Warehouse employee</members>
 		<name>Profile</name>
+	</types>
+	<types>
+		<members>Warehouse</members>
+		<name>CustomApplication</name>
 	</types>
 	<version>38.0</version>
 </Package>
