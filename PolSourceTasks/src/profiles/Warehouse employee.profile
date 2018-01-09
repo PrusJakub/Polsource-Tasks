@@ -14,7 +14,19 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>MyException</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewBookController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TestDataFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TestUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -250,11 +262,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Book__c.Cover__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Book__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -276,11 +283,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Edition__c.Discount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Edition__c.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -231,28 +231,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Cover__c</fullName>
-        <externalId>false</externalId>
-        <label>Cover</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Soft</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Hard</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
@@ -280,16 +258,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Price__c</fullName>
-        <externalId>false</externalId>
-        <label>Price</label>
-        <precision>6</precision>
-        <required>true</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>PublicationDate__c</fullName>
@@ -339,11 +307,9 @@
         <columns>Title__c</columns>
         <columns>Author__c</columns>
         <columns>Category__c</columns>
-        <columns>Cover__c</columns>
         <columns>Description__c</columns>
         <columns>Publisher__c</columns>
         <columns>PublicationDate__c</columns>
-        <columns>Price__c</columns>
         <columns>Discount__c</columns>
         <columns>Bulk_Amount__c</columns>
         <columns>Bulk_Discount__c</columns>

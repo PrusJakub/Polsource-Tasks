@@ -1,0 +1,67 @@
+<apex:page controller="NewBookController">
+    <apex:sectionHeader title="Create new book with 1st edition"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageMessages />
+    		
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Save and New" action="{!saveAndNew}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>
+            </apex:pageBlockButtons>
+                      	
+            <apex:pageBlockSection title="Book details">
+
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="Title"/>
+	                <apex:inputField value="{!book.Title__c}"/>
+                </apex:pageBlockSectionItem>
+                
+				<apex:pageBlockSectionItem >
+					<apex:outputText value="Author"/>
+	                <apex:inputField value="{!book.Author__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="ISBN"/>
+	                <apex:inputField value="{!book.ISBN__c}"/>
+                </apex:pageBlockSectionItem>
+                
+				<apex:pageBlockSectionItem >
+					<apex:outputText value="Publisher"/>
+	                <apex:inputField value="{!book.Publisher__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="Category"/>
+	                <apex:inputField value="{!book.Category__c}"/>
+                </apex:pageBlockSectionItem>			
+                                
+			</apex:pageBlockSection>
+			
+            <apex:pageBlockSection title="Edition details">
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="Edition Name"/>
+	                <apex:inputField value="{!edition.Name}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="Release Date"/>
+	                <apex:inputField value="{!edition.Release_Date__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="Price"/>
+	                <apex:inputField value="{!edition.Price__c}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+					<apex:outputText value="Cover"/>
+	                <apex:inputField value="{!edition.Cover__c}"/>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

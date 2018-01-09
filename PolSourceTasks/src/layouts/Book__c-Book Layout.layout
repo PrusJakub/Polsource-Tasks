@@ -16,16 +16,8 @@
                 <field>Title__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Price__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Discount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Cover__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
