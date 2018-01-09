@@ -15,6 +15,7 @@ public with sharing class NewBookController {
             }
             insert book;
             edition.Book__c = book.Id;
+           	edition.Active__c = true;
        		insert edition;
         }catch(Exception e){
             ApexPages.addMessages(e);
@@ -32,6 +33,7 @@ public with sharing class NewBookController {
             }
             insert book;
             edition.Book__c = book.Id;
+            edition.Active__c = true;
        		insert edition;
         }catch(Exception e){
             ApexPages.addMessages(e);
