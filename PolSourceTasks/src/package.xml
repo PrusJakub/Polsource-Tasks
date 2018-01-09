@@ -29,14 +29,6 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Account.PublisherView</members>
-		<members>Account.CustomerView</members>
-		<members>Account.StoreView</members>
-		<members>Order.OrderView</members>
-		<members>Book__c.BookView</members>
-		<name>ListView</name>
-	</types>
-	<types>
 		<members>Account-Customer</members>
 		<members>Account-Store</members>
 		<members>Account-Publisher Layout</members>

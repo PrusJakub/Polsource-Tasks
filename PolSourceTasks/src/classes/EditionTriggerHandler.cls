@@ -7,7 +7,7 @@ public with sharing class EditionTriggerHandler {
                 bookIds.add(e.Book__c);
             }             
         }        
-        updateBooks(bookIds);		
+        updateBookAvailableEditions(bookIds);		
     }
     
     public void onAfterInsert(Map<Id, Edition__c> newMap) {
@@ -17,7 +17,7 @@ public with sharing class EditionTriggerHandler {
                 bookIds.add(e.Book__c);
             }                      
         }		
-        updateBooks(bookIds);
+        updateBookAvailableEditions(bookIds);
     }
     
     public void onAfterDelete(Map<Id, Edition__c> oldMap) {
@@ -27,10 +27,10 @@ public with sharing class EditionTriggerHandler {
                 bookIds.add(e.Book__c);
             }             
         }        
-        updateBooks(bookIds);
+        updateBookAvailableEditions(bookIds);
     }
     
-    private static void updateBooks(Set<Id> bookIds) {
+    private static void updateBookAvailableEditions(Set<Id> bookIds) {
         List<Book__c> books = [SELECT Id, Available_editions__c, (SELECT Id, Active__c FROM Editions__r WHERE Active__c = true) bookEditions FROM Book__c WHERE Id IN :bookIds];
         for(Book__c b : books){
 			b.Available_editions__c = b.Editions__r.size();   

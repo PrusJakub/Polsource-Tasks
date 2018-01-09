@@ -1,8 +1,6 @@
 @isTest
 private class EditionTriggerTest {
     
-    private Boolean shouldInsert = true;
-    
     @isTest
     static void editionInsertNoActiveTest(){
         //given
@@ -47,9 +45,7 @@ private class EditionTriggerTest {
     	insert editions;        
         
         //when
-        for(Integer i = 0; i<3; i++){
-        	editions.get(0).Active__c = true;
-        }
+        editions.get(0).Active__c = true;
         update editions;
         
         //then
@@ -68,9 +64,7 @@ private class EditionTriggerTest {
     	insert editions;        
         
         //when
-        for(Integer i = 0; i<3; i++){
-        	editions.get(0).Active__c = false;
-        }
+        editions.get(0).Active__c = false;
         update editions;
         
         //then
