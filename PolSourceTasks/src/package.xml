@@ -8,6 +8,7 @@
 		<members>EditionTriggerHandler</members>
 		<members>EditionTriggerTest</members>
 		<members>TestDataFactory</members>
+		<members>TestUtils</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

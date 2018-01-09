@@ -1,6 +1,11 @@
 @isTest
 private class EditionTriggerTest {
     
+    @testSetup
+    static void triggerAccess(){
+        TestUtils.setCustomSettings();
+    }
+    
     @isTest
     static void editionInsertNoActiveTest(){
         //given

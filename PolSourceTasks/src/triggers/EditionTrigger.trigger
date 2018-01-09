@@ -1,7 +1,7 @@
 trigger EditionTrigger on Edition__c (after insert, after update, after delete) {
 	
-    TriggerSettings__c cusSettings = TriggerSettings__c.getValues('isActive');
-    Boolean isActive = cusSettings.Active__c;
+    TriggerSettings__c cusSettings = TriggerSettings__c.getInstance('EditionTrigger');
+    Boolean isActive = cusSettings != null && cusSettings.Active__c;
     
     if(isActive){
     	EditionTriggerHandler handler = new EditionTriggerHandler();
