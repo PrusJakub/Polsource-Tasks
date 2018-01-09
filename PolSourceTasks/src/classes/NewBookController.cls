@@ -8,26 +8,24 @@ public with sharing class NewBookController {
         this.edition = new Edition__c();
     }
     
-    public PageReference save(){       
-       try{            
-            if(!isISBNUnique(book)){
-                throw new MyException('ISBN is not unique');
-            }
-            insert book;
-            edition.Book__c = book.Id;
-           	edition.Active__c = true;
-       		insert edition;
-        }catch(Exception e){
-            ApexPages.addMessages(e);
-            return null;
-        }                 
+    public void save(){                   
         PageReference result = new PageReference('/' + book.Id);
 	    result.setRedirect(true);
-	    return result;       
+	    createRecord(book, edition, result);
     }
     
-    public PageReference saveAndNew() {
-        try{            
+    public void saveAndNew() {        
+		PageReference result = Page.NewBook;  
+        createRecord(book, edition, result);           
+    }
+    
+    public PageReference cancel() {
+        PageReference result = new PageReference('/a05/o');
+        return result;
+    }
+    
+    private static PageReference createRecord(Book__c book, Edition__c edition, PageReference result){
+         try{            
             if(!isISBNUnique(book)){
                 throw new MyException('ISBN is not unique');
             }
@@ -39,12 +37,6 @@ public with sharing class NewBookController {
             ApexPages.addMessages(e);
             return null;
         } 
-		PageReference result = Page.NewBook;     
-        return result;
-    }
-    
-    public PageReference cancel() {
-        PageReference result = new PageReference('/a05/o');
         return result;
     }
     
