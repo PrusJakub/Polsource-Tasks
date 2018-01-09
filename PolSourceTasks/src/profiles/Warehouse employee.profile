@@ -246,16 +246,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Book__c.Bulk_Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Book__c.Bulk_Discount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Book__c.Category__c</field>
         <readable>true</readable>
@@ -263,11 +253,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Book__c.Description__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Book__c.Discount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

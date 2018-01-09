@@ -3,7 +3,7 @@ public with sharing class NewBookController {
     public Book__c book {get; set;}
     public Edition__c edition {get; set;}
     
-    public NewBookController() {
+    public NewBookController(ApexPages.StandardController controller) {
     	this.book = new Book__c();
         this.edition = new Edition__c();
     }

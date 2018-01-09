@@ -184,7 +184,6 @@
         <fields>ISBN__c</fields>
         <fields>Title__c</fields>
         <fields>Author__c</fields>
-        <fields>Discount__c</fields>
         <relatedList>Book__c.Publisher__c</relatedList>
     </relatedLists>
     <relatedLists>

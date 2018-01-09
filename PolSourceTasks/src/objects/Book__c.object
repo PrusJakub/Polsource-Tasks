@@ -26,7 +26,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>NewBook</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -71,26 +73,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Bulk_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Bulk Amount</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Bulk_Discount__c</fullName>
-        <externalId>false</externalId>
-        <label>Bulk Discount</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Category__c</fullName>
@@ -239,16 +221,6 @@
         <type>TextArea</type>
     </fields>
     <fields>
-        <fullName>Discount__c</fullName>
-        <externalId>false</externalId>
-        <label>Discount</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>ISBN__c</fullName>
         <externalId>false</externalId>
         <label>ISBN</label>
@@ -310,9 +282,6 @@
         <columns>Description__c</columns>
         <columns>Publisher__c</columns>
         <columns>PublicationDate__c</columns>
-        <columns>Discount__c</columns>
-        <columns>Bulk_Amount__c</columns>
-        <columns>Bulk_Discount__c</columns>
         <filterScope>Everything</filterScope>
         <label>BookView</label>
     </listViews>

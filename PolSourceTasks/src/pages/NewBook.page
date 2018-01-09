@@ -1,4 +1,4 @@
-<apex:page controller="NewBookController">
+<apex:page standardController="Book__c"  extensions="NewBookController">
     <apex:sectionHeader title="Create new book with 1st edition"/>
     <apex:form >
         <apex:pageBlock >
