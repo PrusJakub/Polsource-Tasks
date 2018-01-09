@@ -2,10 +2,12 @@ public with sharing class NewBookController {
     
     public Book__c book {get; set;}
     public Edition__c edition {get; set;}
+    public ApexPages.StandardController stController;
     
     public NewBookController(ApexPages.StandardController controller) {
     	this.book = new Book__c();
         this.edition = new Edition__c();
+        this.stController = controller;
     }
     
     public PageReference save(){       
@@ -48,10 +50,4 @@ public with sharing class NewBookController {
 		insert edition;
         return book.Id;
     }
-    
-    public PageReference cancel() {
-        PageReference result = new PageReference('/a05/o');
-        return result;
-    }
-
 }
