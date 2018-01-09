@@ -8,45 +8,50 @@ public with sharing class NewBookController {
         this.edition = new Edition__c();
     }
     
-    public void save(){                   
-        PageReference result = new PageReference('/' + book.Id);
-	    result.setRedirect(true);
-	    createRecord(book, edition, result);
+    public PageReference save(){       
+		Id retId = null;
+        try{ 
+			retId = createRecord(book, edition);            
+		}catch(Exception e){
+            ApexPages.addMessages(e);
+            return null;
+        }                 
+        PageReference result = new PageReference('/' + retId);
+	    return result;       
     }
     
-    public void saveAndNew() {        
-		PageReference result = Page.NewBook;  
-        createRecord(book, edition, result);           
+    public PageReference saveAndNew() {
+        try{
+            createRecord(book, edition);
+        }catch(Exception e){
+            ApexPages.addMessages(e);
+            return null;
+        } 
+		PageReference result = Page.NewBook;
+        result.setRedirect(true);
+        return result;
+    }
+    
+    private static Id createRecord(Book__c book, Edition__c edition) {
+		if(edition.Price__c < 0){
+        	throw new MyException('Price cannot be negative');
+        }
+		if(book.ISBN__c < 0){
+        	throw new MyException('ISBN cannot be negative');
+        }
+        if(book.PublicationDate__c != null && book.PublicationDate__c > edition.Release_Date__c){
+            throw new MyException('Release date cannot be earlier than publication date');
+        }
+        insert book;
+        edition.Book__c = book.Id;
+        edition.Active__c = true;            
+		insert edition;
+        return book.Id;
     }
     
     public PageReference cancel() {
         PageReference result = new PageReference('/a05/o');
         return result;
     }
-    
-    private static PageReference createRecord(Book__c book, Edition__c edition, PageReference result){
-         try{            
-            if(!isISBNUnique(book)){
-                throw new MyException('ISBN is not unique');
-            }
-            insert book;
-            edition.Book__c = book.Id;
-            edition.Active__c = true;
-       		insert edition;
-        }catch(Exception e){
-            ApexPages.addMessages(e);
-            return null;
-        } 
-        return result;
-    }
-    
-    private static Boolean isISBNUnique(Book__c book){
-        List<Book__c> books = [SELECT Id, ISBN__c FROM Book__c WHERE ISBN__c =: book.ISBN__c];
-        if(books.size() == 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
 }
