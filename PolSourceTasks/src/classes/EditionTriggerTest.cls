@@ -12,7 +12,7 @@ private class EditionTriggerTest {
         Book__c book = TestDataFactory.prepareBook(true);        
     	
     	//when
-    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, false);  
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, false, 3);  
 
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
@@ -25,7 +25,7 @@ private class EditionTriggerTest {
        	Book__c book = TestDataFactory.prepareBook(true);       
     	
         //when
-        List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true);       
+        List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true, 3);       
         
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
@@ -36,7 +36,7 @@ private class EditionTriggerTest {
     static void editionUpdateAddActiveTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);  
-    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, false);  
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, false, 3);  
         
         //when
         editions.get(0).Active__c = true;
@@ -51,7 +51,7 @@ private class EditionTriggerTest {
     static void editionUpdateRemoveActiveTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);  
-    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true);         
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true, 3);         
         
         //when
         editions.get(0).Active__c = false;
@@ -66,7 +66,7 @@ private class EditionTriggerTest {
     static void editionDeleteTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);
-    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true);        
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true, 3);        
 
         //when
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
