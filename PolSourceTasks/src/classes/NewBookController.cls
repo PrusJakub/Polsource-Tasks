@@ -3,7 +3,6 @@ public with sharing class NewBookController {
     public Book__c book {get; set;}
     public Edition__c edition {get; set;}
     public ApexPages.StandardController stController;
-    private static final String NOT_UNIQUE_MESSAGE = 'Insert failed. First exception on row 0; first error: DUPLICATE_VALUE, duplicate value found: <unknown> duplicates value on record with id: <unknown>: []';
     
     public NewBookController(ApexPages.StandardController controller) {
     	this.book = new Book__c();
@@ -16,11 +15,7 @@ public with sharing class NewBookController {
         try{ 
 			retId = createRecord(book, edition);            
 		}catch(Exception e){
-            if(e.getMessage() == NOT_UNIQUE_MESSAGE){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'ISBN is not unique'));
-            }else{
-            ApexPages.addMessages(e);
-            }
+            checkException(e);
             return null;
         }                 
         PageReference result = new PageReference('/' + retId);
@@ -31,16 +26,12 @@ public with sharing class NewBookController {
         try{
             createRecord(book, edition);
         }catch(Exception e){
-            if(e.getMessage() == NOT_UNIQUE_MESSAGE){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'ISBN is not unique'));
-            }else{
-            ApexPages.addMessages(e);
-            }
+            checkException(e);
             return null;
         } 
 		PageReference result = Page.NewBook;
         result.setRedirect(true);
-        return result;
+        return result;        
     }
     
     private static Id createRecord(Book__c book, Edition__c edition) {
@@ -62,4 +53,13 @@ public with sharing class NewBookController {
 		insert edition;
         return book.Id;
     }
+    
+    private static void checkException(Exception e){
+        if(e.getMessage().contains('DUPLICATE_VALUE')){
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'ISBN is not unique'));
+        }else{
+		ApexPages.addMessages(e);
+		}
+		
+    } 
 }
