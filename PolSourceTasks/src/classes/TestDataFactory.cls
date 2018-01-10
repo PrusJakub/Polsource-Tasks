@@ -16,7 +16,7 @@ public class TestDataFactory {
     public static List<Edition__c> prepareEditions(Boolean shouldInsert, Book__c book, Boolean isActive) {
         List<Edition__c> editions = new List<Edition__c>();            
         for(Integer i = 0; i<3; i++){
-    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = isActive));    		
+    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = isActive, Price__c = 10));    		
     	}
         if(shouldInsert){
     		insert editions; 
