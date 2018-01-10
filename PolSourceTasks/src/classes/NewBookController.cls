@@ -55,7 +55,10 @@ public with sharing class NewBookController {
         }
         insert book;
         edition.Book__c = book.Id;
-        edition.Active__c = true;            
+        edition.Active__c = true;
+        if(edition.Name == null){
+            edition.Name = 'First edition of ' + book.Title__c;
+        }
 		insert edition;
         return book.Id;
     }

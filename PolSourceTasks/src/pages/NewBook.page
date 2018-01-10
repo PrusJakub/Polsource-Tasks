@@ -7,7 +7,7 @@
             <apex:pageBlockButtons >
             	<apex:commandButton value="Save" action="{!save}"/>
                 <apex:commandButton value="Save and New" action="{!saveAndNew}"/>
-                <apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
             </apex:pageBlockButtons>
                       	
             <apex:pageBlockSection title="Book details">
