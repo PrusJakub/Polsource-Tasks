@@ -2,18 +2,12 @@
 <html>
 <head>
 <style >
-body	{background-color: powderblue;}
-form	{color: black;}
-label	{
-		border: 1px;
-		margin: 10px;
-		}
-input	{
-		margin: 2px;
-		}
+form	{color: black;
+		background-color: powderblue;}
+
 </style>
 </head>
-<body>
+
 	<form
 		action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
 		method="POST">
@@ -22,7 +16,7 @@ input	{
 		<input type=hidden name="retURL" value="http://google.pl"> 
 		
 		<label for="name">Contact Name</label>
-			<input id="name" maxlength="80" name="name" size="20" type="text" />
+			<input id="name" maxlength="80" name="name" size="20" type="text" align="center" />
 		<br> 
 		<label for="email">Email</label>
 			<input id="email" maxlength="80" name="email" size="20" type="text" />
@@ -34,7 +28,7 @@ input	{
 			<input  id="subject" maxlength="80" name="subject" size="20" type="text" />
 		<br>
 		<label for="description">Description </label>
-			<textarea name="description"></textarea>
+			<textarea name="description" ></textarea>
 		<br> 
 		<label for="status">Status </label>
 		<select id="status"	name="status">
@@ -46,5 +40,4 @@ input	{
 		</select><br> <input type="submit" name="submit">
 
 	</form>
-</body>
 </html>
