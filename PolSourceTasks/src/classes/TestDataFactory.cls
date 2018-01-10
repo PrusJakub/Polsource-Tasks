@@ -19,12 +19,14 @@ public class TestDataFactory {
     			editions.add(prepareEdition(true, book, isActive));    		
     		}
         	if(shouldInsert){
-	    		insert editions; 
+	    		update editions; 
 	        }
 	        return editions;
     }
     
     public static Edition__c prepareEdition(Boolean shouldInsert, Book__c book, Boolean isActive){
-        return new Edition__c(Name = ('e'), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = isActive, Price__c = 10);
+        Edition__c edition = new Edition__c(Name = ('e'), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = isActive, Price__c = 10);
+        insert edition;
+        return edition;
     }
 }
