@@ -10,12 +10,9 @@ private class EditionTriggerTest {
     static void editionInsertNoActiveTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);        
-    	List<Edition__c> editions = new List<Edition__c>();
+    	
     	//when
-    	for(Integer i = 0; i<3; i++){
-    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = false));    		
-    	}
-    	insert editions;       
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, false);  
 
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
@@ -26,13 +23,9 @@ private class EditionTriggerTest {
     static void editionInsertWithActiveTest(){
         //given
        	Book__c book = TestDataFactory.prepareBook(true);       
-    	List<Edition__c> editions = new List<Edition__c>();
     	
         //when
-        for(Integer i = 0; i<3; i++){
-    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = true));    		
-    	}
-    	insert editions;      
+        List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true);       
         
         //then
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];
@@ -43,11 +36,7 @@ private class EditionTriggerTest {
     static void editionUpdateAddActiveTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);  
-    	List<Edition__c> editions = new List<Edition__c>();
-    	for(Integer i = 0; i<3; i++){
-    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = false));    		
-    	}
-    	insert editions;        
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, false);  
         
         //when
         editions.get(0).Active__c = true;
@@ -62,11 +51,7 @@ private class EditionTriggerTest {
     static void editionUpdateRemoveActiveTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);  
-    	List<Edition__c> editions = new List<Edition__c>();
-    	for(Integer i = 0; i<3; i++){
-    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = true));    		
-    	}
-    	insert editions;        
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true);         
         
         //when
         editions.get(0).Active__c = false;
@@ -81,11 +66,7 @@ private class EditionTriggerTest {
     static void editionDeleteTest(){
         //given
         Book__c book = TestDataFactory.prepareBook(true);
-    	List<Edition__c> editions = new List<Edition__c>();
-    	for(Integer i = 0; i<3; i++){
-    		editions.add(new Edition__c(Name = ('e'+i), Book__c = book.Id, Cover__c = 'Soft', Release_Date__c = date.today(), Active__c = true));    		
-    	}
-    	insert editions;        
+    	List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true);        
 
         //when
         book = [SELECT Id, Available_editions__c FROM Book__c WHERE Id =: book.Id];

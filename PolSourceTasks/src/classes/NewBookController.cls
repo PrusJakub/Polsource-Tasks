@@ -15,7 +15,11 @@ public with sharing class NewBookController {
         try{ 
 			retId = createRecord(book, edition);            
 		}catch(Exception e){
-            checkException(e);
+            if(e.getMessage().contains('DUPLICATE_VALUE')){
+				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'ISBN is not unique'));
+       		}else{
+				ApexPages.addMessages(e);
+			}
             return null;
         }                 
         PageReference result = new PageReference('/' + retId);
@@ -23,15 +27,14 @@ public with sharing class NewBookController {
     }
     
     public PageReference saveAndNew() {
-        try{
-            createRecord(book, edition);
-        }catch(Exception e){
-            checkException(e);
+        PageReference result = save(); 
+        if(result == null){
             return null;
-        } 
-		PageReference result = Page.NewBook;
-        result.setRedirect(true);
-        return result;        
+        } else{        
+        	result = Page.NewBook;
+        	result.setRedirect(true);
+            return result;        
+        }
     }
     
     private static Id createRecord(Book__c book, Edition__c edition) {
@@ -52,14 +55,5 @@ public with sharing class NewBookController {
         }
 		insert edition;
         return book.Id;
-    }
-    
-    private static void checkException(Exception e){
-        if(e.getMessage().contains('DUPLICATE_VALUE')){
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'ISBN is not unique'));
-        }else{
-		ApexPages.addMessages(e);
-		}
-		
-    } 
+    }    
 }
