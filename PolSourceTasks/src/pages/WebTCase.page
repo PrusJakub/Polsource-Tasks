@@ -8,7 +8,6 @@
 	}
     h1{
     font-size: 30px;
-    margin-left: 5%;
     }
     form {
     font-size: 20px;
@@ -34,7 +33,7 @@
 </head>
 	<body>
         <br/><br/> <br/> 
-        <h1>If you have problem just write it!</h1>
+        
 		
 		<div class="row">
 			<div class="column left">
@@ -42,9 +41,9 @@
 				action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
 				method="POST"  style="
     			border-top-width: 50px;
-    			margin-top: 20px;
-    			margin-left: 200px;" class="column">
-		
+    			margin-top: 100px;
+    			margin-left: 120px;" class="column">
+                    <h1>If you have problem just write it!</h1> <br/>
                     <input type="hidden" name="orgid" value="00D0O000000rqmx"/> 
                     <input type="hidden" name="retURL" value="http://qbicase-developer-edition.eu9.force.com/"/> 
 					
