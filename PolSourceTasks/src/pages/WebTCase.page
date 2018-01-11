@@ -1,4 +1,4 @@
-<apex:page showHeader="false">
+<apex:page showHeader="false" >
     <html>
 <head>
 	<title>Web-to-Case page</title>
@@ -56,22 +56,12 @@
 					
 					<label for="subject">Subject</label><br/> 
 					 
-						<input  id="subject" maxlength="80" name="subject" size="30" type="text" style="border-radius: 10px" /><br/> 
+						<input id="subject" maxlength="80" name="subject" size="30" type="text" style="border-radius: 10px" /><br/> 
 					
 					<label for="description">Description </label><br/> 
 					
-						<textarea name="description" style="border-radius: 10px"></textarea><br/> 
-					 
-					<label for="status">Status </label><br/> 
-					
-					<select id="status"	name="status" style="border-radius: 10px"><br/> 
-						<option value="">--None--</option>
-						<option value="New">New</option>
-						<option value="Working">Working</option>
-						<option value="Escalated">Escalated</option>
-						<option value="Closed">Closed</option>
-					</select>
-                    <br/> <br/> 
+						<textarea name="description" style="border-radius: 10px"></textarea><br/>  
+					<br/> 
                     
                     <input type="submit" name="submit" style="border-radius: 10px"/> <br/> 
 				</form>
