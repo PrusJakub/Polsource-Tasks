@@ -12,6 +12,9 @@
 		<members>TestUtils</members>
 		<members>NewBookController</members>
 		<members>MyException</members>
+		<members>CaseChecker</members>
+		<members>scheduleCaseChecker</members>
+		<members>CaseChecker_Test</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

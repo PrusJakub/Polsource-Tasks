@@ -6,6 +6,14 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>CaseChecker</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseChecker_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>EditionTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -27,6 +35,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>scheduleCaseChecker</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
