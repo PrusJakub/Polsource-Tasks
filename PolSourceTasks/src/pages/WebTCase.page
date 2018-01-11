@@ -2,15 +2,13 @@
     <html>
 <head>
 	<title>Web-to-Case page</title>
+    <apex:stylesheet value="{!URLFOR($Resource.WebTCase, 'statics/templatemo_477_puzzle/css/bootstrap.min.css')}"/>
 <style>
 	body {
     background-image: url("{!URLFOR($Resource.WebTCase,'statics/back.png')}");
 	}
     h1{
     font-size: 30px;
-    }
-    form {
-    font-size: 20px;
     }
 	.column {
 		float: left;
