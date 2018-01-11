@@ -1,0 +1,34 @@
+<apex:page standardController="Book__c"  extensions="NewBookController">
+    <apex:sectionHeader title="Create new book with 1st edition"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageMessages />
+    		
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Save and New" action="{!saveAndNew}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+                      	
+            <apex:pageBlockSection title="Book details">
+               
+				<apex:inputField value="{!book.Title__c}"/>                
+				<apex:inputField value="{!book.Author__c}"/>
+				<apex:inputField value="{!book.ISBN__c}"/>
+				<apex:inputField value="{!book.Publisher__c}"/>
+				<apex:inputField value="{!book.Category__c}"/>
+				<apex:inputField value="{!book.PublicationDate__c}"/>
+                                
+			</apex:pageBlockSection>			
+            <apex:pageBlockSection title="Edition details">
+
+				<apex:inputField value="{!edition.Name}"/>
+				<apex:inputField value="{!edition.Release_Date__c}"/>
+				<apex:inputField value="{!edition.Price__c}"/>
+				<apex:inputField value="{!edition.Cover__c}"/>
+
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

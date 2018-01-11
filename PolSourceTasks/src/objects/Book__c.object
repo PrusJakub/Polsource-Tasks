@@ -26,7 +26,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <content>NewBook</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -71,26 +73,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Bulk_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Bulk Amount</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Bulk_Discount__c</fullName>
-        <externalId>false</externalId>
-        <label>Bulk Discount</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Category__c</fullName>
@@ -231,44 +213,12 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Cover__c</fullName>
-        <externalId>false</externalId>
-        <label>Cover</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Soft</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Hard</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Discount__c</fullName>
-        <externalId>false</externalId>
-        <label>Discount</label>
-        <precision>5</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>ISBN__c</fullName>
@@ -280,16 +230,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Price__c</fullName>
-        <externalId>false</externalId>
-        <label>Price</label>
-        <precision>6</precision>
-        <required>true</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>PublicationDate__c</fullName>
@@ -339,14 +279,9 @@
         <columns>Title__c</columns>
         <columns>Author__c</columns>
         <columns>Category__c</columns>
-        <columns>Cover__c</columns>
         <columns>Description__c</columns>
         <columns>Publisher__c</columns>
         <columns>PublicationDate__c</columns>
-        <columns>Price__c</columns>
-        <columns>Discount__c</columns>
-        <columns>Bulk_Amount__c</columns>
-        <columns>Bulk_Discount__c</columns>
         <filterScope>Everything</filterScope>
         <label>BookView</label>
     </listViews>

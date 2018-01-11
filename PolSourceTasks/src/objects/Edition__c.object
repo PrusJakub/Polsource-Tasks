@@ -109,7 +109,7 @@
         <externalId>false</externalId>
         <label>Price</label>
         <precision>6</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
