@@ -46,7 +46,7 @@
     			margin-left: 200px;" class="column">
 		
                     <input type="hidden" name="orgid" value="00D0O000000rqmx"/> 
-                    <input type="hidden" name="retURL" value="http://google.pl"/> 
+                    <input type="hidden" name="retURL" value="http://qbicase-developer-edition.eu9.force.com/"/> 
 					
                     <label for="name">Contact Name</label><br/>
                      
@@ -79,7 +79,7 @@
 					</select>
                     <br/> <br/> 
                     
-                    <input size="20" type="submit" name="submit" style="border-radius: 10px"/> <br/> 
+                    <input type="submit" name="submit" style="border-radius: 10px"/> <br/> 
 				</form>
 			</div>
 	
