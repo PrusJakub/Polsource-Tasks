@@ -1,0 +1,113 @@
+<apex:page showHeader="false">
+    <html>
+<head>
+	<title>Web-to-Case page</title>
+<style>
+	body {
+    background-image: url("{!URLFOR($Resource.WebTCase,'statics/back.png')}");
+	}
+    h1{
+    font-size: 30px;
+    margin-left: 5%;
+    }
+    form {
+    font-size: 20px;
+    }
+	.column {
+		float: left;
+	}
+	.left {
+		width: 33%;
+	}
+	.center{
+		width: 33%;
+	}
+	.right {
+		width: 33%;
+	}
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+</style>
+</head>
+	<body>
+        <br/><br/> <br/> 
+        <h1>If you have problem just write it!</h1>
+		
+		<div class="row">
+			<div class="column left">
+				<form
+				action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
+				method="POST"  style="
+    			border-top-width: 50px;
+    			margin-top: 20px;
+    			margin-left: 200px;" class="column">
+		
+                    <input type="hidden" name="orgid" value="00D0O000000rqmx"/> 
+                    <input type="hidden" name="retURL" value="http://google.pl"/> 
+					
+                    <label for="name">Contact Name</label><br/>
+                     
+                    <input id="name" maxlength="80" name="name" size="30" type="text" style="border-radius: 30px"/><br/>
+					
+                    <label for="email">Email</label><br/> 
+					
+						<input id="email" maxlength="80" name="email" size="30" type="text" style="border-radius: 10px"/><br/> 
+					
+					<label for="phone">Phone </label><br/> 
+					 
+						<input id="phone" maxlength="40" name="phone" size="30" type="text" style="border-radius: 10px"/><br/> 
+					
+					<label for="subject">Subject</label><br/> 
+					 
+						<input  id="subject" maxlength="80" name="subject" size="30" type="text" style="border-radius: 10px" /><br/> 
+					
+					<label for="description">Description </label><br/> 
+					
+						<textarea name="description" style="border-radius: 10px"></textarea><br/> 
+					 
+					<label for="status">Status </label><br/> 
+					
+					<select id="status"	name="status" style="border-radius: 10px"><br/> 
+						<option value="">--None--</option>
+						<option value="New">New</option>
+						<option value="Working">Working</option>
+						<option value="Escalated">Escalated</option>
+						<option value="Closed">Closed</option>
+					</select>
+                    <br/> <br/> 
+                    
+                    <input size="20" type="submit" name="submit" style="border-radius: 10px"/> <br/> 
+				</form>
+			</div>
+	
+		
+			<div class="column center" style="margin-top: 100px" align="center">
+				<script>
+				function light(sw) {
+    				var pic;
+    				if (sw == 0) {
+				        pic = "{!URLFOR($Resource.WebTCase,'statics/pic_bulboff.gif')}"
+				    } else {
+    			    	pic = "{!URLFOR($Resource.WebTCase,'statics/pic_bulbon.gif')}"
+    				}
+    				document.getElementById('myImage').src = pic;
+				}
+				</script>
+				<br/> 
+                <img id="myImage" src="{!URLFOR($Resource.WebTCase,'statics/pic_bulboff.gif')}" width="150" height="300" />
+				<p>
+				<br/> 
+				<button type="button" onclick="light(1)" style="border-radius: 10px">Light On</button>
+				<button type="button" onclick="light(0)" style="border-radius: 10px">Light Off</button>
+				</p>
+			</div>
+			<div class="column right" style="margin-top: 40px" align="center">
+                <apex:image url="{!URLFOR($Resource.WebTCase,'statics/tree.png')}" width="500" height="500"/>
+			</div>
+		</div>
+	</body>
+</html>
+</apex:page>
