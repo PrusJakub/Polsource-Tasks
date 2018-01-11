@@ -13,7 +13,7 @@
 		<members>NewBookController</members>
 		<members>MyException</members>
 		<members>CaseChecker</members>
-		<members>scheduleCaseChecker</members>
+		<members>ScheduleCaseChecker</members>
 		<members>CaseChecker_Test</members>
 		<name>ApexClass</name>
 	</types>
