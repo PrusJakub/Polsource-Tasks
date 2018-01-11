@@ -8,7 +8,7 @@
     background-image: url("{!URLFOR($Resource.WebTCase,'statics/back.png')}");
 	}
     h1{
-    font-size: 30px;
+    font-size: 28px;
     }
 	.column {
 		float: left;
@@ -29,10 +29,7 @@
 	}
 </style>
 </head>
-	<body>
-        <br/><br/> <br/> 
-        
-		
+	<body>     
 		<div class="row">
 			<div class="column left">
 				<form
@@ -41,7 +38,7 @@
     			border-top-width: 50px;
     			margin-top: 100px;
     			margin-left: 120px;" class="column">
-                    <h1>If you have problem just write it!</h1> <br/>
+                    <h1>If you have problem just write it!</h1> <br/><br/>
                     <input type="hidden" name="orgid" value="00D0O000000rqmx"/> 
                     <input type="hidden" name="retURL" value="http://qbicase-developer-edition.eu9.force.com/"/> 
 					
