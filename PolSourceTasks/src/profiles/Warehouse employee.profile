@@ -474,11 +474,11 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>NewBook</apexPage>
+        <apexPage>MakeYourCase</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>WebTCase</apexPage>
+        <apexPage>NewBook</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>

@@ -2,7 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>NewBook</members>
-		<members>WebTCase</members>
+		<members>MakeYourCase</members>
 		<name>ApexPage</name>
 	</types>
 	<types>
