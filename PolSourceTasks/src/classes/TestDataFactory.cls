@@ -1,6 +1,7 @@
 @isTest
 public class TestDataFactory {
 
+    public static final String requestURI = 'https://playful-goat-198379-dev-ed.my.salesforce.com/services/apexrest/Book/';
     public static Book__c prepareBook(Boolean shouldInsert){
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
         Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);

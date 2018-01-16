@@ -7,7 +7,7 @@ public class BookService_Test {
         Book__c book = TestDataFactory.prepareBook(true);
         List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true, 3);
         RestRequest request = new RestRequest();
-        request.requestURI = 'https://playful-goat-198379-dev-ed.my.salesforce.com/services/apexrest/Book/' + book.ISBN__c;
+        request.requestURI = TestDataFactory.requestURI + book.ISBN__c;
         request.httpMethod = 'GET';
         RestContext.request = request;
         
@@ -24,7 +24,7 @@ public class BookService_Test {
         //given
         String exceptionMsg = null;
         RestRequest request = new RestRequest();
-        request.requestURI = 'https://playful-goat-198379-dev-ed.my.salesforce.com/services/apexrest/Book/dasd';
+        request.requestURI = TestDataFactory.requestURI + 'dasd';
         request.httpMethod = 'GET';
         RestContext.request = request;
         String expectedError = 'ISBN must contain only from digits!';
@@ -44,7 +44,7 @@ public class BookService_Test {
     static void testISBNWithoutBook() {
         String exceptionMsg = null;
         RestRequest request = new RestRequest();
-        request.requestURI = 'https://playful-goat-198379-dev-ed.my.salesforce.com/services/apexrest/Book/1';
+        request.requestURI = TestDataFactory.requestURI + '1';
         request.httpMethod = 'GET';
         RestContext.request = request;
         String expectedError = 'List has no rows';
@@ -58,5 +58,25 @@ public class BookService_Test {
         
         //then
         System.assertEquals(exceptionMsg.contains(expectedError), true);
+    }
+    
+    @isTest
+    static void testCreateBook() {
+        //given
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
+        Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
+        insert acc;
+        RestRequest request = new RestRequest();
+        request.requestURI = TestDataFactory.requestURI;
+        request.httpMethod = 'POST';
+        request.addHeader('Content-Type', 'application/json');
+        request.requestBody = Blob.valueOf('{"title" : "hh", "author" : "Stefan Zeromski",  "isbn" : "453453",  "publisher" : "' + acc.Id + '"}');
+        RestContext.request = request;
+        
+        //when
+        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', acc.Id);
+        
+        //then
+        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :newBook]);
     }
 }

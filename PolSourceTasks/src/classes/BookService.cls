@@ -27,4 +27,15 @@ global with sharing class BookService {
         }        
         return wrapper;
     }
+    
+    @HttpPost
+    global static Id createBook(String title, String author, String isbn, Id publisher) {
+        Book__c book = new Book__c();
+        book.Publisher__c = publisher;
+        book.Title__c = title;
+        book.Author__c = author;
+        book.ISBN__c = Decimal.valueOf(isbn);
+        insert book;
+        return book.Id;
+    }
 }
