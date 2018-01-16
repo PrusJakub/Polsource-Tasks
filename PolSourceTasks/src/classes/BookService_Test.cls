@@ -79,4 +79,26 @@ public class BookService_Test {
         //then
         System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :newBook]);
     }
+    
+    @isTest
+    static void testCreateBookWithoutField() {
+		//given
+		String exceptionMsg = null;
+		RestRequest request = new RestRequest();
+        request.requestURI = TestDataFactory.requestURI;
+        request.httpMethod = 'POST';
+        request.addHeader('Content-Type', 'application/json');
+        request.requestBody = Blob.valueOf('{"title" : "hh", "author" : "Stefan Zeromski",  "isbn" : "453453",  "publisher" : ""}');
+        RestContext.request = request;
+        String expectedError = 'REQUIRED_FIELD_MISSING';
+        
+        //when
+        try{
+        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', null);
+        }catch(Exception e){
+            exceptionMsg = e.getMessage();
+        }
+        //then
+        System.assertEquals(exceptionMsg.contains(expectedError), true);        
+    }
 }
