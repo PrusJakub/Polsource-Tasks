@@ -1,8 +1,9 @@
 global class ListWrapper {
 
-    public String Name {get; set;}
-    public Decimal Price {get;set;}
-    public String Cover {get; set;}
+    public String name {get; set;}
+    public Decimal price {get;set;}
+    public String cover {get; set;}
+    public Date releaseDate {get; set;}
     
     public ListWrapper(){}
 }
