@@ -19,7 +19,7 @@ public class TestDataFactory {
 			editions.add(prepareEdition(false, book, isActive));    		
 		}
 		if(shouldInsert){
-			update editions; 
+			upsert editions; 
         }
 		return editions;
     }
@@ -31,4 +31,6 @@ public class TestDataFactory {
         }
         return edition;
     }
+
+        
 }
