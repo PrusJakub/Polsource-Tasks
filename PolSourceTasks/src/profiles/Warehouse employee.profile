@@ -6,7 +6,11 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>BookInformator</apexClass>
+        <apexClass>BookService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookService_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -15,6 +19,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EditionTriggerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ItemWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ListWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

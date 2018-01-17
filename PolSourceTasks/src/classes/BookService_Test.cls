@@ -61,7 +61,7 @@ public class BookService_Test {
     }
     
     @isTest
-    static void testCreateBook() {
+    static void testCreateBookWithoutEdition() {
         //given
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
         Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
@@ -74,10 +74,11 @@ public class BookService_Test {
         RestContext.request = request;
         
         //when
-        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', acc.Id);
+        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', acc.Id, null, null, null, null, null);
         
         //then
         System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :newBook]);
+        System.assertEquals(0, [SELECT COUNT() FROM Edition__c WHERE Book__c = :newBook]);
     }
     
     @isTest
@@ -94,11 +95,53 @@ public class BookService_Test {
         
         //when
         try{
-        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', null);
+        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', null, null, null, null, null, null);
         }catch(Exception e){
             exceptionMsg = e.getMessage();
         }
         //then
         System.assertEquals(exceptionMsg.contains(expectedError), true);        
+    }
+    
+    @isTest
+    static void testCreateBookWithEdition() {
+         //given
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
+        Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
+        insert acc;
+        RestRequest request = new RestRequest();
+        request.requestURI = TestDataFactory.requestURI;
+        request.httpMethod = 'POST';
+        request.addHeader('Content-Type', 'application/json');
+        request.requestBody = Blob.valueOf(TestDataFactory.CREATE_BOOK_WITH_EDITION_JSON);
+        RestContext.request = request;
+        
+        //when
+        Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', acc.Id, 'hard', 26.99, 'Polish edition', Date.today(), true);
+        
+        //then
+        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :newBook]);
+        System.assertEquals(1, [SELECT COUNT() FROM Edition__c WHERE Book__c = :newBook]);
+    }
+    
+    @isTest
+    static void testBookDelete() {
+        //given 
+        Book__c book = TestDataFactory.prepareBook(true);
+        Edition__c edition = TestDataFactory.prepareEdition(true, book, true) ;
+        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :book.Id]);
+        System.assertEquals(1, [SELECT COUNT() FROM Edition__c WHERE Book__c = :book.Id]);
+		RestRequest request = new RestRequest();
+        request.requestURI = TestDataFactory.requestURI + book.Id;
+        request.httpMethod = 'DELETE';
+        RestContext.request = request;
+        
+        //when
+        String result = BookService.deleteBook();
+        
+        //then
+        System.assertEquals(0, [SELECT COUNT() FROM Book__c Where Id = :book.Id]);
+        System.assertEquals(0, [SELECT COUNT() FROM Edition__c WHERE Book__c = :book.Id]);
+        System.assertEquals('Record deleted', result);
     }
 }
