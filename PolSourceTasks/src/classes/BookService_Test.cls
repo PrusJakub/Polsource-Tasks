@@ -7,7 +7,7 @@ public class BookService_Test {
         Book__c book = TestDataFactory.prepareBook(true);
         List<Edition__c> editions = TestDataFactory.prepareEditions(true, book, true, 3);
         RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI + book.ISBN__c;
+        request.requestURI = TestDataFactory.REQUEST_URI + book.ISBN__c;
         request.httpMethod = 'GET';
         RestContext.request = request;
         
@@ -24,7 +24,7 @@ public class BookService_Test {
         //given
         String exceptionMsg = null;
         RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI + 'dasd';
+        request.requestURI = TestDataFactory.REQUEST_URI + 'dasd';
         request.httpMethod = 'GET';
         RestContext.request = request;
         String expectedError = 'ISBN must contain only from digits!';
@@ -44,7 +44,7 @@ public class BookService_Test {
     static void testISBNWithoutBook() {
         String exceptionMsg = null;
         RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI + '1';
+        request.requestURI = TestDataFactory.REQUEST_URI + '1';
         request.httpMethod = 'GET';
         RestContext.request = request;
         String expectedError = 'List has no rows';
@@ -67,7 +67,7 @@ public class BookService_Test {
         Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
         insert acc;
         RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI;
+        request.requestURI = TestDataFactory.REQUEST_URI;
         request.httpMethod = 'POST';
         request.addHeader('Content-Type', 'application/json');
         request.requestBody = Blob.valueOf('{"title" : "hh", "author" : "Stefan Zeromski",  "isbn" : "453453",  "publisher" : "' + acc.Id + '"}');
@@ -84,23 +84,22 @@ public class BookService_Test {
     @isTest
     static void testCreateBookWithoutField() {
 		//given
-		String exceptionMsg = null;
+		String EXCEPTION_MSG = null;
 		RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI;
+        request.requestURI = TestDataFactory.REQUEST_URI;
         request.httpMethod = 'POST';
         request.addHeader('Content-Type', 'application/json');
         request.requestBody = Blob.valueOf('{"title" : "hh", "author" : "Stefan Zeromski",  "isbn" : "453453",  "publisher" : ""}');
         RestContext.request = request;
-        String expectedError = 'REQUIRED_FIELD_MISSING';
         
         //when
         try{
         Id newBook = BookService.createBook('hh', 'Stefan Zeromski', '453453', null, null, null, null, null, null);
         }catch(Exception e){
-            exceptionMsg = e.getMessage();
+            EXCEPTION_MSG = e.getMessage();
         }
         //then
-        System.assertEquals(exceptionMsg.contains(expectedError), true);        
+        System.assertEquals(true, EXCEPTION_MSG.contains(TestDataFactory.ERROR_REQUIRED_FIELD));        
     }
     
     @isTest
@@ -110,7 +109,7 @@ public class BookService_Test {
         Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
         insert acc;
         RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI;
+        request.requestURI = TestDataFactory.REQUEST_URI;
         request.httpMethod = 'POST';
         request.addHeader('Content-Type', 'application/json');
         request.requestBody = Blob.valueOf(TestDataFactory.CREATE_BOOK_WITH_EDITION_JSON);
@@ -132,7 +131,7 @@ public class BookService_Test {
         System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :book.Id]);
         System.assertEquals(1, [SELECT COUNT() FROM Edition__c WHERE Book__c = :book.Id]);
 		RestRequest request = new RestRequest();
-        request.requestURI = TestDataFactory.requestURI + book.Id;
+        request.requestURI = TestDataFactory.REQUEST_URI + book.Id;
         request.httpMethod = 'DELETE';
         RestContext.request = request;
         
@@ -143,5 +142,23 @@ public class BookService_Test {
         System.assertEquals(0, [SELECT COUNT() FROM Book__c Where Id = :book.Id]);
         System.assertEquals(0, [SELECT COUNT() FROM Edition__c WHERE Book__c = :book.Id]);
         System.assertEquals('Record deleted', result);
+    }
+    
+    @isTest
+    static void testEmptyBookDelete() {
+        //given
+        RestRequest request = new RestRequest();
+        request.requestURI = TestDataFactory.REQUEST_URI + '111';
+        request.httpMethod = 'DELETE';
+        RestContext.request = request;
+      	String EXCEPTION_MSG = null;
+        //when
+        try{
+        BookService.deleteBook();
+        }catch(Exception e){
+            EXCEPTION_MSG = e.getMessage();
+        }
+        //then
+        System.assertEquals(true, EXCEPTION_MSG.contains(TestDataFactory.ERROR_NO_ROWS));
     }
 }

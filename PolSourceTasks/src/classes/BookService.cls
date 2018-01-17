@@ -56,7 +56,5 @@ global with sharing class BookService {
         Book__c book = [SELECT Id FROM Book__c WHERE Id = :bookID];
         delete book;
         return 'Record deleted';
-    }
- 
-    
+    }    
 }
