@@ -22,42 +22,41 @@ public class BookService_Test {
     @isTest
     static void testGetBookByWrongISBN() {
         //given
-        String exceptionMsg = null;
+        String EXCEPTION_MSG = null;
         RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI + 'dasd';
         request.httpMethod = 'GET';
         RestContext.request = request;
-        String expectedError = 'ISBN must contain only from digits!';
+        String EXPECTED_ERROR = 'ISBN must contain only from digits!';
         
         //when
         try{
         	ItemWrapper test = BookService.getBookByISBN();
         }catch(Exception e){
-            exceptionMsg = e.getMessage();
+            EXCEPTION_MSG = e.getMessage();
         }       
         
         //then
-        System.assertEquals(exceptionMsg.contains(expectedError), true);
+        System.assertEquals(EXCEPTION_MSG.contains(EXPECTED_ERROR), true);
     }
     
     @isTest
     static void testISBNWithoutBook() {
-        String exceptionMsg = null;
+        String EXCEPTION_MSG = null;
         RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI + '1';
         request.httpMethod = 'GET';
         RestContext.request = request;
-        String expectedError = 'List has no rows';
         
         //when
         try{
         	ItemWrapper test = BookService.getBookByISBN();
         }catch(Exception e){
-            exceptionMsg = e.getMessage();
+            EXCEPTION_MSG = e.getMessage();
         }       
         
         //then
-        System.assertEquals(exceptionMsg.contains(expectedError), true);
+        System.assertEquals(EXCEPTION_MSG.contains(TestDataFactory.ERROR_NO_ROWS), true);
     }
     
     @isTest
