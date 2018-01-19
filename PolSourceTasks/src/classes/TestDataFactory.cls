@@ -5,9 +5,10 @@ public class TestDataFactory {
     public static final String CREATE_BOOK_WITH_EDITION_JSON = '{"title" : "Skazani na Shawshank", "author" : "Stephan King", "isbn" : "6456424684",  "publisher" : "0010O00001tN63C", "cover" : "hard", "price" : "26.99",	"name" : "Polish edition", "releaseDate" : "1989-06-14", "active" : "true"}';
     public static final String ERROR_NO_ROWS = 'List has no rows';
     public static final String ERROR_REQUIRED_FIELD = 'REQUIRED_FIELD_MISSING';
+    public static final Id RECORD_TYPE_PUBLISHER = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
+    
     public static Book__c prepareBook(Boolean shouldInsert){
-        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
-        Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
+        Account acc = new Account(Name = 'a', RecordTypeId = RECORD_TYPE_PUBLISHER);
         insert acc;     
         Book__c book = new Book__c(Title__c = 'abc', ISBN__c = 1, Author__c = 'a', Publisher__c = acc.Id, Available_editions__c = 0);
         

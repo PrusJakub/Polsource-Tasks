@@ -62,8 +62,7 @@ public class BookService_Test {
     @isTest
     static void testCreateBookWithoutEdition() {
         //given
-        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
-        Account acc = new Account(Name = 'a', RecordTypeId = recordTypeId);
+        Account acc = new Account(Name = 'a', RecordTypeId = TestDataFactory.RECORD_TYPE_PUBLISHER);
         insert acc;
         RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI;
