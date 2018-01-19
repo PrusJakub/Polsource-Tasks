@@ -6,6 +6,15 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+    	<apexClass>BookService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookService_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BookWrapper</apexClass>
         <apexClass>CaseChecker</apexClass>
         <enabled>false</enabled>
     </classAccesses>

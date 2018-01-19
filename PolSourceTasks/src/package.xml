@@ -12,6 +12,12 @@
 		<members>TestUtils</members>
 		<members>NewBookController</members>
 		<members>MyException</members>
+		<members>BookService</members>
+		<members>BookWrapper</members>
+		<members>EditionWrapper</members>
+		<members>Wrapper</members>
+		<members>MessageWrapper</members>
+		<members>BookService_Test</members>
 		<members>CaseChecker</members>
 		<members>ScheduleCaseChecker</members>
 		<members>CaseChecker_Test</members>

@@ -31,6 +31,8 @@ public class TestDataFactory {
         }
         return edition;
     }
+
+    
     
     public static Case prepareCase(Boolean shouldInsert){
         Case c = new Case(Status = 'New', Origin = 'Web', Priority = 'Medium');
