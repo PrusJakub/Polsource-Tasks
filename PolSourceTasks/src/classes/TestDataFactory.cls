@@ -28,10 +28,17 @@ public class TestDataFactory {
         List<Edition__c> editions = new List<Edition__c>();
         for (Integer i = 0; i < numberOfEditions; i++) {
             editions.add(prepareEdition(false, book, isActive));
+<<<<<<< feature/JK013
         }
         if (shouldInsert) {
             upsert editions;
         }
+=======
+        }
+        if (shouldInsert) {
+            upsert editions;
+        }
+>>>>>>> master
         return editions;
     }
 
@@ -46,6 +53,9 @@ public class TestDataFactory {
 <<<<<<< feature/JK013
 
 =======
+<<<<<<< feature/JK013
+
+=======
     
     
     public static Case prepareCase(Boolean shouldInsert){
@@ -56,5 +66,6 @@ public class TestDataFactory {
     }
     return c;
     }
+>>>>>>> master
 >>>>>>> master
 }

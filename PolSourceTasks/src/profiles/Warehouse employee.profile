@@ -9,7 +9,11 @@
 <<<<<<< feature/JK013
         <apexClass>BookService</apexClass>
 =======
+<<<<<<< feature/JK013
+        <apexClass>BookService</apexClass>
+=======
     	<apexClass>BookService</apexClass>
+>>>>>>> master
 >>>>>>> master
         <enabled>false</enabled>
     </classAccesses>
@@ -21,11 +25,14 @@
         <apexClass>BookWrapper</apexClass>
 <<<<<<< feature/JK013
 =======
+<<<<<<< feature/JK013
+=======
         <apexClass>CaseChecker</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CaseChecker_Test</apexClass>
+>>>>>>> master
 >>>>>>> master
         <enabled>false</enabled>
     </classAccesses>
