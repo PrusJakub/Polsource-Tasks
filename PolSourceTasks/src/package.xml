@@ -18,9 +18,12 @@
 		<members>Wrapper</members>
 		<members>MessageWrapper</members>
 		<members>BookService_Test</members>
+<<<<<<< feature/JK013
+=======
 		<members>CaseChecker</members>
 		<members>ScheduleCaseChecker</members>
 		<members>CaseChecker_Test</members>
+>>>>>>> master
 		<name>ApexClass</name>
 	</types>
 	<types>

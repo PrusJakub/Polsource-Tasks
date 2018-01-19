@@ -6,7 +6,11 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+<<<<<<< feature/JK013
+        <apexClass>BookService</apexClass>
+=======
     	<apexClass>BookService</apexClass>
+>>>>>>> master
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -15,11 +19,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BookWrapper</apexClass>
+<<<<<<< feature/JK013
+=======
         <apexClass>CaseChecker</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CaseChecker_Test</apexClass>
+>>>>>>> master
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -28,6 +35,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EditionTriggerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EditionWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MessageWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -48,6 +63,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Wrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
