@@ -1,56 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>BookService</members>
-		<members>BookService_Test</members>
-		<members>BookWrapper</members>
-		<members>CaseChecker</members>
-		<members>CaseChecker_Test</members>
-		<members>ChangePasswordController</members>
-		<members>ChangePasswordControllerTest</members>
-		<members>EditionTriggerHandler</members>
-		<members>EditionTriggerTest</members>
-		<members>EditionWrapper</members>
-		<members>MessageWrapper</members>
-		<members>MyException</members>
-		<members>NewBookController</members>
-		<members>NewBookController_Test</members>
-		<members>ScheduleCaseChecker</members>
-		<members>TestDataFactory</members>
-		<members>TestUtils</members>
-		<members>Wrapper</members>
-		<name>ApexClass</name>
-	</types>
-	<types>
 		<members>NewBook</members>
-		<members>SessionId</members>
 		<name>ApexPage</name>
 	</types>
 	<types>
+		<members>EditionTriggerHandler</members>
+		<members>EditionTriggerTest</members>
+		<members>TestDataFactory</members>
+		<members>TestUtils</members>
+		<members>NewBookController</members>
+		<members>MyException</members>
+		<members>BookService</members>
+		<members>ItemWrapper</members>
+		<members>ListWrapper</members>
+		<members>BookService_Test</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
 		<members>*</members>
+		<name>StaticResource</name>
+	</types>
+	<types>
+		<members>EditionTrigger</members>
 		<name>ApexTrigger</name>
 	</types>
 	<types>
 		<members>Account</members>
 		<members>Book__c</members>
-		<members>Case</members>
+		<members>Order</members>
+		<members>OrderItem</members>
+		<members>TriggerSettings__c</members>
+		<members>SalesBeginning__c</members>
 		<members>Edition__c</members>
 		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Account-Customer</members>
+		<members>Account-Store</members>
+		<members>Account-Publisher Layout</members>
+		<members>Book__c-Book Layout</members>
+		<members>Order-Order Layout</members>
+		<members>OrderItem-Order Product Layout</members>
+		<name>Layout</name>
 	</types>
 	<types>
 		<members>Warehouse employee</members>
 		<name>Profile</name>
 	</types>
 	<types>
-		<members>Account.Account</members>
-		<members>Account.Customer</members>
-		<members>Account.Publisher</members>
-		<members>Account.Store</members>
-		<name>RecordType</name>
+		<members>Warehouse</members>
+		<name>CustomApplication</name>
 	</types>
-	<types>
-		<members>WebTCase</members>
-		<name>StaticResource</name>
-	</types>
-	<version>41.0</version>
+	<version>38.0</version>
 </Package>

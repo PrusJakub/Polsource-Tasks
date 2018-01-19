@@ -1,3 +1,0 @@
-<apex:page >
-Bearer {!$Api.Session_ID}
-</apex:page>
