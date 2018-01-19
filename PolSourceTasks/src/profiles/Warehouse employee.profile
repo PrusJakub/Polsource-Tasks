@@ -6,6 +6,14 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>CaseChecker</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseChecker_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>EditionTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -19,6 +27,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>NewBookController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ScheduleCaseChecker</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -462,11 +474,11 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>NewBook</apexPage>
+        <apexPage>MakeYourCase</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>WebTCase</apexPage>
+        <apexPage>NewBook</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
