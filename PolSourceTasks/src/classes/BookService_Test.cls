@@ -77,15 +77,15 @@ public class BookService_Test {
 
     @isTest
     static void testCreateBookWithoutField() {
-		//given
-		String EXCEPTION_MSG = null;
-		RestRequest request = new RestRequest();
+        //given
+        String EXCEPTION_MSG = null;
+        RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI;
         request.httpMethod = 'POST';
         request.addHeader('Content-Type', 'application/json');
         request.requestBody = Blob.valueOf('{"title" : "hh", "author" : "Stefan Zeromski",  "isbn" : "453453",  "publisher" : ""}');
         RestContext.request = request;
-        
+
         //when
         Wrapper newBook = BookService.createBook();
         String testString = newBook.serialize();
@@ -96,7 +96,7 @@ public class BookService_Test {
 
     @isTest
     static void testCreateBookWithEdition() {
-         //given
+        //given
         Account acc = new Account(Name = 'a', RecordTypeId = TestDataFactory.RECORD_TYPE_PUBLISHER);
         insert acc;
         RestRequest request = new RestRequest();
@@ -105,7 +105,7 @@ public class BookService_Test {
         request.addHeader('Content-Type', 'application/json');
         request.requestBody = Blob.valueOf(TestDataFactory.CREATE_BOOK_WITH_EDITION_JSON);
         RestContext.request = request;
-        
+
         //when
         Wrapper newBook = BookService.createBook();
         String testString = newBook.serialize();
@@ -121,15 +121,15 @@ public class BookService_Test {
         Edition__c edition = TestDataFactory.prepareEdition(true, book, true) ;
         System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :book.Id]);
         System.assertEquals(1, [SELECT COUNT() FROM Edition__c WHERE Book__c = :book.Id]);
-		RestRequest request = new RestRequest();
+        RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI + book.Id;
         request.httpMethod = 'DELETE';
         RestContext.request = request;
-        
+
         //when
         Wrapper result = BookService.deleteBook();
         String testString = result.serialize();
-        
+
         //then
         System.assertEquals(true, testString.contains(TestDataFactory.RECORD_DELETED));
     }
@@ -143,7 +143,7 @@ public class BookService_Test {
         RestContext.request = request;
 
         //when
-        Wrapper result =BookService.deleteBook();
+        Wrapper result = BookService.deleteBook();
         String testString = result.serialize();
 
         //then
