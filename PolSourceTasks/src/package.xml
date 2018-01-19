@@ -12,8 +12,10 @@
 		<members>NewBookController</members>
 		<members>MyException</members>
 		<members>BookService</members>
-		<members>ItemWrapper</members>
-		<members>ListWrapper</members>
+		<members>BookWrapper</members>
+		<members>EditionWrapper</members>
+		<members>Wrapper</members>
+		<members>MessageWrapper</members>
 		<members>BookService_Test</members>
 		<name>ApexClass</name>
 	</types>
