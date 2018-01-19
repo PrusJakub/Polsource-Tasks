@@ -2,59 +2,87 @@
 global with sharing class BookService {
 
     @HttpGet
-    global static ItemWrapper getBookByISBN() {
+    global static Wrapper getBookByISBN() {
         RestRequest request = RestContext.request;
-        String bookISBN = request.requestURI.substring(request.requestURI.lastIndexOf('Book/')+5);
-        if(!bookISBN.isNumeric()){
-            throw new MyException('ISBN must contain only from digits!');
+        String bookISBN = getBookFromURI(request);
+        if (bookISBN.length() == 0) {
+            return new MessageWrapper(TestDataFactory.ERROR_NO_ISBN);
         }
-        Decimal bookISBNdec = Decimal.valueOf(bookISBN);      
-        Book__c book = [SELECT Title__c, Author__c, Id, Name FROM Book__c WHERE ISBN__c = :bookISBNdec]; 
-        List<Edition__c> editions = [SELECT Name, Price__c, Cover__c, Release_Date__c, Id FROM Edition__c WHERE Book__c = :book.Id]; 
-        ItemWrapper wrapper = new ItemWrapper();
-        wrapper.name = book.Name;
-        wrapper.title = book.Title__c;
-        wrapper.author = book.Author__c;
-        wrapper.id = book.Id;
-        for(Integer i = 0; i < editions.size(); i++) {
-            ListWrapper lwrapper = new ListWrapper();
-            lwrapper.name = editions.get(i).Name;
-            lwrapper.price = editions.get(i).Price__c;
-            lwrapper.cover = editions.get(i).Cover__c;
-            lwrapper.releaseDate = editions.get(i).Release_Date__c;
-            lwrapper.id = editions.get(i).Id;
-            wrapper.editions.add(lwrapper);
-        }        
-        return wrapper;
+        Decimal bookISBNdec = Decimal.valueOf(bookISBN);
+        Book__c book;
+        List<Edition__c> editions;
+
+        if (!bookISBN.isNumeric()) {
+            MessageWrapper error = new MessageWrapper(TestDataFactory.ERROR_NO_DIGITS_ISBN);
+            return error;
+        }
+        try {
+            book = [SELECT Title__c, Author__c, Id, Name, Publisher__c FROM Book__c WHERE ISBN__c = :bookISBNdec];
+            editions = [SELECT Name, Price__c, Cover__c, Release_Date__c, Id, Active__c FROM Edition__c WHERE Book__c = :book.Id];
+        } catch (Exception e) {
+            MessageWrapper error = new MessageWrapper(TestDataFactory.ERROR_NO_ROWS);
+            return error;
+        }
+
+        BookWrapper bWrapper = new BookWrapper(book.Name, book.Title__c, book.Author__c, book.Id, bookISBN, book.Publisher__c);
+        for (Integer i = 0; i < editions.size(); i++) {
+            EditionWrapper editionsWrapper = new EditionWrapper(editions.get(i).Name, editions.get(i).Price__c, editions.get(i).Cover__c, editions.get(i).Release_Date__c, editions.get(i).Id, editions.get(i).Active__c);
+            bWrapper.bookEditions.add(editionsWrapper);
+        }
+        return bWrapper;
     }
-    
+
     @HttpPost
-    global static Id createBook(String title, String author, String isbn, Id publisher, String cover, Decimal price, String name, Date releaseDate, Boolean active) {
-        Book__c book = new Book__c();
-        Edition__c edition = new Edition__c();
-        book.Publisher__c = publisher;
-        book.Title__c = title;
-        book.Author__c = author;
-        book.ISBN__c = Decimal.valueOf(isbn);
-        insert book;
-        if(cover != null && price != null){
-        	edition.Book__c = book.Id;
-        	edition.Cover__c = cover;
-        	edition.Price__c = price;
-        	edition.Name = name;
-            edition.Release_Date__c = releaseDate;
-            edition.Active__c = active;
-            insert edition;
-        }
-        return book.Id;
-    }
-    
-    @HttpDelete
-    global static String deleteBook() {
+    global static Wrapper createBook() {
         RestRequest request = RestContext.request;
-        String bookID = request.requestURI.substring(request.requestURI.lastIndexOf('Book/')+5);
-        Book__c book = [SELECT Id FROM Book__c WHERE Id = :bookID];
+        String jsonBody = request.requestBody.toString();
+        BookWrapper bWrapper;
+        bWrapper = (BookWrapper) JSON.deserialize(jsonBody, BookWrapper.class);
+        Book__c book = new Book__c();
+        book = bWrapper.getSObject();
+        try {
+            insert book;
+        } catch (Exception e) {
+            if (e.getMessage().contains(TestDataFactory.ERROR_REQUIRED_FIELD)) {
+                return new MessageWrapper(TestDataFactory.ERROR_REQUIRED_FIELD);
+            } else if (e.getMessage().contains(TestDataFactory.ERROR_DUPLICATED_VALUE)) {
+                return new MessageWrapper(TestDataFactory.ERROR_DUPLICATED_VALUE + ' of ISBN');
+            }
+        }
+        MessageWrapper idWrapper = new MessageWrapper(book.Id);
+        if (bWrapper.bookEditions != null) {
+            List<Edition__c> editions = new List<Edition__c>();
+            for (Integer i = 0; i < bWrapper.bookEditions.size(); i++) {
+                EditionWrapper eWrapper = bWrapper.bookEditions.get(i);
+                if (eWrapper.cover != null && eWrapper.price != null) {
+                    Edition__c edition = eWrapper.getSObject();
+                    edition.Book__c = book.Id;
+                    editions.add(edition);
+                }
+            }
+            insert editions;
+        }
+        return idWrapper;
+    }
+
+    @HttpDelete
+    global static Wrapper deleteBook() {
+        RestRequest request = RestContext.request;
+        String bookID = getBookFromURI(request);
+        if (bookID.length() == 0) {
+            return new MessageWrapper(TestDataFactory.ERROR_NO_ID);
+        }
+        Book__c book;
+        try {
+            book = [SELECT Id FROM Book__c WHERE Id = :bookID];
+        } catch (Exception e) {
+            return new MessageWrapper(TestDataFactory.ERROR_NO_ROWS);
+        }
         delete book;
-        return 'Record deleted';
-    }    
+        return new MessageWrapper(TestDataFactory.RECORD_DELETED);
+    }
+
+    private static String getBookFromURI(RestRequest request) {
+        return request.requestURI.substring(request.requestURI.lastIndexOf(TestDataFactory.URI_MAPPING) + TestDataFactory.URI_MAPPING.length());
+    }
 }
