@@ -490,6 +490,10 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>MakeYourCase</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>NewBook</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
