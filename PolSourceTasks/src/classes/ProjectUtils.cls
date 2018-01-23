@@ -11,4 +11,7 @@ public class ProjectUtils {
     public static final String RECORD_DELETED = 'Record deleted';
     public static final String ERROR_NO_ID = 'You have to insert ID of book you want delete!';
     public static final String ERROR_NO_ISBN = 'You have to insert ISBN of book you want get!';
+    public static final String LIST_HAS_NO_ROWS = 'List has no rows for assignment to SObject';
+    public static final String NO_PARAMETER = 'No parameter given!';
+    public static final String INVALID_DECIMAL = 'Invalid decimal';
 }

@@ -27,8 +27,5 @@ global class BookWrapper implements Wrapper {
         return book;
     }
 
-    public String serialize() {
-        return JSON.serialize(this);
-    }
 
 }

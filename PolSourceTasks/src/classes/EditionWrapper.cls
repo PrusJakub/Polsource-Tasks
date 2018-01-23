@@ -26,7 +26,4 @@ global class EditionWrapper implements Wrapper {
         return edition;
     }
 
-    public String serialize(){
-        return JSON.serialize(this);
-    }
 }

@@ -13,11 +13,15 @@ public class BookService_Test {
 
         //when
         Wrapper testBook = BookService.getBookByISBN();
-        String test = testBook.serialize();
 
         //then
         System.assert(testBook != null);
-        System.assertEquals(true, test.contains('bookEditions'));
+        System.assert(testBook instanceof BookWrapper);
+        BookWrapper bw = (BookWrapper) testBook;
+        System.assertEquals(book.ISBN__c, bw.isbn);
+        System.assertEquals(book.Id, bw.id);
+        System.assertEquals(book.Publisher__c, bw.publisherId);
+        System.assertEquals(editions.size(), bw.bookEditions.size());
     }
 
     @isTest
@@ -31,10 +35,12 @@ public class BookService_Test {
 
         //when
         Wrapper test = BookService.getBookByISBN();
-        String testString = test.serialize();
 
         //then
-        System.assertEquals(true, testString.contains(TestDataFactory.ERROR_NO_DIGITS_ISBN));
+        System.assert(test instanceof MessageWrapper);
+        MessageWrapper mw = (MessageWrapper) test;
+        System.assertEquals(TestDataFactory.ERROR_NO_DIGITS_ISBN, mw.message);
+
     }
 
     @isTest
@@ -47,10 +53,11 @@ public class BookService_Test {
 
         //when
         Wrapper test = BookService.getBookByISBN();
-        String testString = test.serialize();
 
         //then
-        System.assertEquals(true, testString.contains(TestDataFactory.ERROR_NO_ROWS));
+        System.assert(test instanceof MessageWrapper);
+        MessageWrapper mw = (MessageWrapper) test;
+        System.assertEquals(TestDataFactory.ERROR_NO_ROWS, mw.message);
     }
 
     @isTest
@@ -69,10 +76,14 @@ public class BookService_Test {
 
         //when
         Wrapper newBook = BookService.createBook();
-        String testString = newBook.serialize();
 
         //then
-        System.assertEquals(false, testString.contains('bookEditions'));
+        System.assert(newBook instanceof BookWrapper);
+        BookWrapper bw = (BookWrapper) newBook;
+        System.assertEquals('hh', bw.title);
+        System.assertEquals('Stefan Zeromski', bw.author);
+        System.assertEquals(453453, bw.isbn);
+        System.assertEquals(acc.Id, bw.publisherId);
     }
 
     @isTest
@@ -88,17 +99,16 @@ public class BookService_Test {
 
         //when
         Wrapper newBook = BookService.createBook();
-        String testString = newBook.serialize();
 
         //then
-        System.assertEquals(true, testString.contains(TestDataFactory.ERROR_REQUIRED_FIELD));
+        System.assert(newBook instanceof MessageWrapper);
+        MessageWrapper mw = (MessageWrapper) newBook;
+        System.assertEquals(TestDataFactory.ERROR_REQUIRED_FIELD, mw.message);
     }
 
     @isTest
     static void testCreateBookWithEdition() {
         //given
-        Account acc = new Account(Name = 'a', RecordTypeId = TestDataFactory.RECORD_TYPE_PUBLISHER);
-        insert acc;
         RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI;
         request.httpMethod = 'POST';
@@ -108,10 +118,13 @@ public class BookService_Test {
 
         //when
         Wrapper newBook = BookService.createBook();
-        String testString = newBook.serialize();
 
         //then
-        System.assertEquals(false, testString.contains('_'));
+        System.assert(newBook instanceof BookWrapper);
+        BookWrapper bw = (BookWrapper) newBook;
+        System.assertEquals('Skazani na Shawshank', bw.title);
+        System.assertEquals(6, bw.isbn);
+        System.assertEquals('0010O00001tN63C', bw.publisherId);
     }
 
     @isTest
@@ -128,10 +141,11 @@ public class BookService_Test {
 
         //when
         Wrapper result = BookService.deleteBook();
-        String testString = result.serialize();
 
         //then
-        System.assertEquals(true, testString.contains(TestDataFactory.RECORD_DELETED));
+        System.assert(result instanceof MessageWrapper);
+        MessageWrapper mw = (MessageWrapper) result;
+        System.assertEquals(TestDataFactory.RECORD_DELETED, mw.message);
     }
 
     @isTest
@@ -144,9 +158,10 @@ public class BookService_Test {
 
         //when
         Wrapper result = BookService.deleteBook();
-        String testString = result.serialize();
 
         //then
-        System.assertEquals(true, testString.contains(TestDataFactory.ERROR_NO_ROWS));
+        System.assert(result instanceof MessageWrapper);
+        MessageWrapper mw = (MessageWrapper) result;
+        System.assertEquals(TestDataFactory.ERROR_NO_ROWS, mw.message);
     }
 }
