@@ -45,6 +45,7 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
@@ -86,10 +87,12 @@
                 <value>
                     <fullName>Soft</fullName>
                     <default>false</default>
+                    <label>Soft</label>
                 </value>
                 <value>
                     <fullName>Hard</fullName>
                     <default>false</default>
+                    <label>Hard</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -135,4 +138,5 @@
     <pluralLabel>Editions</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
