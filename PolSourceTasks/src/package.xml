@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>NewBook</members>
+		<members>MakeYourCase</members>
 		<name>ApexPage</name>
 	</types>
 	<types>
@@ -21,7 +22,7 @@
 		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>WebTCase</members>
 		<name>StaticResource</name>
 	</types>
 	<types>

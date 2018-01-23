@@ -39,7 +39,11 @@ global with sharing class BookService {
         RestRequest request = RestContext.request;
         String jsonBody = request.requestBody.toString();
         BookWrapper bWrapper;
-        bWrapper = (BookWrapper) JSON.deserialize(jsonBody, BookWrapper.class);
+        try {
+            bWrapper = (BookWrapper) JSON.deserialize(jsonBody, BookWrapper.class);
+        } catch (Exception e) {
+            return new MessageWrapper(e.getMessage());
+        }
         Book__c book = new Book__c();
         book = bWrapper.getSObject();
         try {
@@ -49,6 +53,8 @@ global with sharing class BookService {
                 return new MessageWrapper(ProjectUtils.ERROR_REQUIRED_FIELD);
             } else if (e.getMessage().contains(ProjectUtils.ERROR_DUPLICATED_VALUE)) {
                 return new MessageWrapper(ProjectUtils.ERROR_DUPLICATED_VALUE + ' of ISBN');
+            } else {
+                return new MessageWrapper(e.getMessage());
             }
         }
         MessageWrapper idWrapper = new MessageWrapper(book.Id);
