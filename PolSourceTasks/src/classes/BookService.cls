@@ -85,7 +85,7 @@ global with sharing class BookService {
     }
 
     private static String getBookFromURI(RestRequest request) {
-        String parameter = request.requestURI.substring(request.requestURI.lastIndexOf(ProjectUtils.URI_MAPPING) + ProjectUtils.URI_MAPPING.length());
+        String parameter = request.requestURI.substring(request.requestURI.lastIndexOf(ProjectUtils.BOOK_SERVICE_URI_MAPPING) + ProjectUtils.BOOK_SERVICE_URI_MAPPING.length());
         if (parameter.length() == 0) {
             throw new MyException(ProjectUtils.NO_PARAMETER);
         }

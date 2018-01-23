@@ -6,7 +6,7 @@ public class ProjectUtils {
     public static final String ERROR_REQUIRED_FIELD = 'REQUIRED_FIELD_MISSING';
     public static final Id RECORD_TYPE_PUBLISHER = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
     public static final String ERROR_NO_DIGITS_ISBN = 'ISBN must contain only from digits!';
-    public static final String URI_MAPPING = 'Book/';
+    public static final String BOOK_SERVICE_URI_MAPPING = 'Book/';
     public static final String ERROR_DUPLICATED_VALUE = 'DUPLICATE_VALUE';
     public static final String RECORD_DELETED = 'Record deleted';
     public static final String ERROR_NO_ID = 'You have to insert ID of book you want delete!';
