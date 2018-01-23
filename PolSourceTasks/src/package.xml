@@ -37,6 +37,7 @@
 		<members>TriggerSettings__c</members>
 		<members>SalesBeginning__c</members>
 		<members>Edition__c</members>
+		<members>Opinion__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -46,6 +47,7 @@
 		<members>Book__c-Book Layout</members>
 		<members>Order-Order Layout</members>
 		<members>OrderItem-Order Product Layout</members>
+		<members>Opinion-Opinion Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
