@@ -29,13 +29,12 @@ global with sharing class BookService {
 
     @HttpPost
     global static Wrapper createBook() {
-        RestRequest request = RestContext.request;
-        String jsonBody = request.requestBody.toString();
-        BookWrapper bWrapper;
         Book__c book;
         List<Edition__c> editions;
+        
         try {
-            bWrapper = (BookWrapper) JSON.deserialize(jsonBody, BookWrapper.class);
+            String jsonBody = RestContext.request.requestBody.toString();
+            BookWrapper bWrapper = (BookWrapper) JSON.deserialize(jsonBody, BookWrapper.class);
             book = bWrapper.getSObject();
             editions = new List<Edition__c>();
             insert book;
@@ -66,11 +65,9 @@ global with sharing class BookService {
 
     @HttpDelete
     global static Wrapper deleteBook() {
-        Book__c book;
-
         try {
             String bookID = getBookFromURI(RestContext.request);
-            book = [SELECT Id FROM Book__c WHERE Id = :bookID];
+            Book__c book = [SELECT Id FROM Book__c WHERE Id = :bookID];
             delete book;
         } catch (Exception e) {
             if (e.getMessage().contains(ProjectUtils.LIST_HAS_NO_ROWS)) {
