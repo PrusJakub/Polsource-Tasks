@@ -132,8 +132,9 @@ public class BookService_Test {
         //given 
         Book__c book = TestDataFactory.prepareBook(true);
         Edition__c edition = TestDataFactory.prepareEdition(true, book, true) ;
-        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :book.Id]);
-        System.assertEquals(1, [SELECT COUNT() FROM Edition__c WHERE Book__c = :book.Id]);
+        Id bookId = book.Id;
+        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :bookId]);
+        System.assertEquals(1, [SELECT COUNT() FROM Edition__c WHERE Book__c = :bookId]);
         RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI + book.Id;
         request.httpMethod = 'DELETE';
@@ -146,11 +147,16 @@ public class BookService_Test {
         System.assert(result instanceof MessageWrapper);
         MessageWrapper mw = (MessageWrapper) result;
         System.assertEquals(TestDataFactory.RECORD_DELETED, mw.message);
+        System.assertEquals(0, [SELECT COUNT() FROM Book__c Where Id = :bookId]);
+        System.assertEquals(0, [SELECT COUNT() FROM Edition__c WHERE Book__c = :bookId]);
     }
 
     @isTest
     static void testEmptyBookDelete() {
         //given
+        Book__c book = TestDataFactory.prepareBook(true);
+        Id bookId = book.Id;
+        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :bookId]);
         RestRequest request = new RestRequest();
         request.requestURI = TestDataFactory.REQUEST_URI + '111';
         request.httpMethod = 'DELETE';
@@ -163,5 +169,6 @@ public class BookService_Test {
         System.assert(result instanceof MessageWrapper);
         MessageWrapper mw = (MessageWrapper) result;
         System.assertEquals(TestDataFactory.ERROR_NO_ROWS, mw.message);
+        System.assertEquals(1, [SELECT COUNT() FROM Book__c Where Id = :bookId]);
     }
 }
