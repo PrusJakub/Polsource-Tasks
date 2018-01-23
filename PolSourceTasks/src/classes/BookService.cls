@@ -6,7 +6,7 @@ global with sharing class BookService {
         RestRequest request = RestContext.request;
         String bookISBN = getBookFromURI(request);
         if (bookISBN.length() == 0) {
-            return new MessageWrapper(TestDataFactory.ERROR_NO_ISBN);
+            return new MessageWrapper(ProjectUtils.ERROR_NO_ISBN);
         }
         Book__c book;
         List<Edition__c> editions;
@@ -15,20 +15,20 @@ global with sharing class BookService {
         try {
             bookISBNdec = Decimal.valueOf(bookISBN);
         } catch (Exception e) {
-            MessageWrapper error = new MessageWrapper(TestDataFactory.ERROR_NO_DIGITS_ISBN);
+            MessageWrapper error = new MessageWrapper(ProjectUtils.ERROR_NO_DIGITS_ISBN);
             return error;
         }
         try {
             book = [SELECT Title__c, Author__c, Id, Name, Publisher__c FROM Book__c WHERE ISBN__c = :bookISBNdec];
             editions = [SELECT Name, Price__c, Cover__c, Release_Date__c, Id, Active__c FROM Edition__c WHERE Book__c = :book.Id];
         } catch (Exception e) {
-            MessageWrapper error = new MessageWrapper(TestDataFactory.ERROR_NO_ROWS);
+            MessageWrapper error = new MessageWrapper(ProjectUtils.ERROR_NO_ROWS);
             return error;
         }
 
-        BookWrapper bWrapper = new BookWrapper(book.Name, book.Title__c, book.Author__c, book.Id, bookISBN, book.Publisher__c);
+        BookWrapper bWrapper = new BookWrapper(book);
         for (Integer i = 0; i < editions.size(); i++) {
-            EditionWrapper editionsWrapper = new EditionWrapper(editions.get(i).Name, editions.get(i).Price__c, editions.get(i).Cover__c, editions.get(i).Release_Date__c, editions.get(i).Id, editions.get(i).Active__c);
+            EditionWrapper editionsWrapper = new EditionWrapper(editions.get(i));
             bWrapper.bookEditions.add(editionsWrapper);
         }
         return bWrapper;
@@ -45,10 +45,10 @@ global with sharing class BookService {
         try {
             insert book;
         } catch (Exception e) {
-            if (e.getMessage().contains(TestDataFactory.ERROR_REQUIRED_FIELD)) {
-                return new MessageWrapper(TestDataFactory.ERROR_REQUIRED_FIELD);
-            } else if (e.getMessage().contains(TestDataFactory.ERROR_DUPLICATED_VALUE)) {
-                return new MessageWrapper(TestDataFactory.ERROR_DUPLICATED_VALUE + ' of ISBN');
+            if (e.getMessage().contains(ProjectUtils.ERROR_REQUIRED_FIELD)) {
+                return new MessageWrapper(ProjectUtils.ERROR_REQUIRED_FIELD);
+            } else if (e.getMessage().contains(ProjectUtils.ERROR_DUPLICATED_VALUE)) {
+                return new MessageWrapper(ProjectUtils.ERROR_DUPLICATED_VALUE + ' of ISBN');
             }
         }
         MessageWrapper idWrapper = new MessageWrapper(book.Id);
@@ -72,19 +72,19 @@ global with sharing class BookService {
         RestRequest request = RestContext.request;
         String bookID = getBookFromURI(request);
         if (bookID.length() == 0) {
-            return new MessageWrapper(TestDataFactory.ERROR_NO_ID);
+            return new MessageWrapper(ProjectUtils.ERROR_NO_ID);
         }
         Book__c book;
         try {
             book = [SELECT Id FROM Book__c WHERE Id = :bookID];
         } catch (Exception e) {
-            return new MessageWrapper(TestDataFactory.ERROR_NO_ROWS);
+            return new MessageWrapper(ProjectUtils.ERROR_NO_ROWS);
         }
         delete book;
-        return new MessageWrapper(TestDataFactory.RECORD_DELETED);
+        return new MessageWrapper(ProjectUtils.RECORD_DELETED);
     }
 
     private static String getBookFromURI(RestRequest request) {
-        return request.requestURI.substring(request.requestURI.lastIndexOf(TestDataFactory.URI_MAPPING) + TestDataFactory.URI_MAPPING.length());
+        return request.requestURI.substring(request.requestURI.lastIndexOf(ProjectUtils.URI_MAPPING) + ProjectUtils.URI_MAPPING.length());
     }
 }

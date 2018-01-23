@@ -17,6 +17,7 @@
 		<members>Wrapper</members>
 		<members>MessageWrapper</members>
 		<members>BookService_Test</members>
+		<members>ProjectUtils</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

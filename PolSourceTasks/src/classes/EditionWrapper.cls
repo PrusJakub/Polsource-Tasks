@@ -7,13 +7,13 @@ global class EditionWrapper implements Wrapper {
     public Id id { get; set; }
     public Boolean active { get; set; }
 
-    public EditionWrapper(String name, Decimal price, String cover, Date releaseDate, Id id, Boolean active) {
-        this.name = name;
-        this.price = price;
-        this.cover = cover;
-        this.releaseDate = releaseDate;
-        this.id = id;
-        this.active = active;
+    public EditionWrapper(Edition__c edition) {
+        this.name = edition.Name;
+        this.price = edition.Price__c;
+        this.cover = edition.Cover__c;
+        this.releaseDate = edition.Release_Date__c;
+        this.id = edition.Id;
+        this.active = edition.Active__c;
     }
 
     public Edition__c getSObject(){
