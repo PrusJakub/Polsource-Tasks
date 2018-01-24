@@ -18,4 +18,5 @@ public class ProjectUtils {
     public static final String INVALID_DECIMAL = 'Invalid decimal';
     public static final String NEGATIVE_ISBN = 'ISBN cannot be negative';
     public static final String NEW_CONTACT_NAME = 'New Contact';
+    public static final String REQUEST_URI_FOR_DATA = 'https://playful-goat-198379-dev-ed.my.salesforce.com/services/data/v41.0/sobjects';
 }
