@@ -17,7 +17,8 @@ public with sharing class AddOpinionPageController {
         try {
             retId = createRecord(opinion, book, con);
         } catch (Exception e) {
-            System.debug(e.getMessage());
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage()));
+            return null;
         }
         return new PageReference('/' + retId);
     }
