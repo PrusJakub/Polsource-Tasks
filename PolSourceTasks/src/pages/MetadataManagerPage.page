@@ -1,0 +1,16 @@
+<apex:page id="MetadataManagerPage" controller="MetadataManagerController">
+    <apex:sectionHeader title="New package"/>
+    <apex:pageBlock>
+        <apex:pageMessages/>
+
+        <apex:pageBlockButtons >
+
+        </apex:pageBlockButtons>
+
+        <apex:pageBlockSection >
+
+
+
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
