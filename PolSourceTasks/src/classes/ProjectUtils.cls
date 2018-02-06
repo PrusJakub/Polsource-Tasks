@@ -14,8 +14,4 @@ public class ProjectUtils {
     public static final String LIST_HAS_NO_ROWS = 'List has no rows for assignment to SObject';
     public static final String NO_PARAMETER = 'No parameter given!';
     public static final String INVALID_DECIMAL = 'Invalid decimal';
-    public static final String URL_TO_ORG = String.valueOf(URL.getSalesforceBaseUrl());
-    public static final String REQUEST_URI_TO_METADATA = URL_TO_ORG.substringBetween('delegate=', ']') + '/services/data/v41.0/tooling/sobjects/';
-    public static final String REQUEST_URI_TO_CLASS_TRIGGER = URL_TO_ORG.substringBetween('delegate=', ']') + '/services/data/v41.0/tooling/apexManifest/';
-    public static final String AUTHORIZATION_HEADER = 'Bearer ' + UserInfo.getSessionId();
 }
