@@ -23,7 +23,7 @@ public with sharing class AddOpinionPageController {
         return new PageReference('/' + retId);
     }
 
-    private static Id createRecord(Opinion__c op, Book__c bk, Contact cn) {
+    @TestVisible private Id createRecord(Opinion__c op, Book__c bk, Contact cn) {
         List<Book__c> bookIds = [SELECT Id FROM Book__c WHERE ISBN__c = :bk.ISBN__c];
         List<Contact> contacts = [SELECT Id FROM Contact WHERE Email = :cn.Email];
 

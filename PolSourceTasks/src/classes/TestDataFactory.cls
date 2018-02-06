@@ -5,6 +5,7 @@ public class TestDataFactory {
     public static final String ERROR_NO_DIGITS_ISBN = 'ISBN must contain only from digits!';
     public static final String ERROR_NO_ROWS = 'There is not any book with this ID!';
     public static final Id RECORD_TYPE_PUBLISHER = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Publisher').getRecordTypeId();
+    public static final Id RECORD_TYPE_READER = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Reader').getRecordTypeId();
     public static final String ERROR_REQUIRED_FIELD = 'REQUIRED_FIELD_MISSING';
     public static final String CREATE_BOOK_WITH_EDITION_JSON = '{"title" : "Skazani na Shawshank", "author" : "Stephan King", "isbn" : "6",  "publisherId" : "0010O00001tN63C", "bookEditions" : [{"cover" : "hard", "price" : 26.99, "name" : "Polish edition", "releaseDate" : "1989-06-14", "active" : true }]}';
     public static final String RECORD_DELETED = 'Record deleted';
@@ -37,6 +38,14 @@ public class TestDataFactory {
             insert edition;
         }
         return edition;
+    }
+
+    public static Contact prepareContact(Boolean shouldInsert) {
+        Contact c = new Contact(RecordTypeId = RECORD_TYPE_READER, LastName = 'asd');
+        if (shouldInsert) {
+            insert c;
+        }
+        return c;
     }
 
 
