@@ -1,0 +1,21 @@
+<apex:page id="AddOpinionPage" standardController="Opinion__c" extensions="AddOpinionPageController" showHeader="false">
+    <apex:form>
+        <apex:pageBlock>
+            <apex:pageMessages/>
+
+            <apex:pageBlockButtons>
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="Opinion">
+
+                <apex:inputField required="true" value="{!opinion.Rate__c}"/>
+                <apex:inputField required="true" value="{!opinion.Opinion_content__c}"/>
+                <apex:inputField value="{!book.ISBN__c}"/>
+                <apex:inputField required="true" value="{!con.Email}"/>
+
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
